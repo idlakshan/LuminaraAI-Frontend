@@ -1,4 +1,5 @@
 import Hero from "./components/Hero"
+import HotelListings from "./components/HotelListings"
 import Navigation from "./components/Navigation"
 
 
@@ -6,7 +7,6 @@ function App() {
   
 
   return (
-  
       <>
      <Navigation/>
       <div className="relative min-h-screen">
@@ -17,7 +17,7 @@ function App() {
           className="absolute top-0 left-0 w-full h-full object-cover -z-10"
         />
       </div>
-
+      <HotelListings/>
       </>
   )
 }
