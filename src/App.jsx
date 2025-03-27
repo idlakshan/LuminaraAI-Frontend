@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import Navigation from "./components/Navigation"
 
 
 function App() {
@@ -6,10 +6,10 @@ function App() {
 
   return (
   
-      <div>
-       <Button>Destructive</Button>
+      <>
+     <Navigation/>
 
-      </div>
+      </>
   )
 }
 
