@@ -1,6 +1,14 @@
+import { useState } from "react";
 import HotelCard from "./HotelCard";
+import LocationTab from "./LocationTab";
 
 function HotelListings() {
+
+  const [selectedLocation, setSelectedLocation] = useState("ALL");
+
+  const handleClick = (location) => {
+    setSelectedLocation(location)
+  }
 
   const hotels = [
     {
@@ -93,10 +101,17 @@ function HotelListings() {
     }
   ]
 
+  const locations = ["ALL", "France", "Italy", "Australia", "Japan"];
+
+
+  const filteredHotels =selectedLocation === "ALL" ? hotels : hotels.filter((hotel)=>{
+     return hotel.location.toLowerCase().includes(selectedLocation.toLowerCase());
+  }) 
+
 
   return (
     <section className="px-8 py-8 lg:py-16">
-      <div className="mb-12">
+      <div className="mb-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Top trending hotels worldwide
         </h2>
@@ -106,9 +121,16 @@ function HotelListings() {
           experience.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-4">
+      <div className="flex space-x-1">
         {
-          hotels.map((hotel) => {
+          locations.map((location, index) => (
+            <LocationTab key={index} selectedLocation={selectedLocation} name={location} handleClick={handleClick} />
+          ))
+        }
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-5">
+        {
+          filteredHotels.map((hotel) => {
             return (<HotelCard key={hotel._id} hotel={hotel} />)
           })
         }
