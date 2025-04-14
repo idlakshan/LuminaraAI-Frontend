@@ -103,11 +103,9 @@ function HotelListings() {
 
   const locations = ["ALL", "France", "Italy", "Australia", "Japan"];
 
-
-  const filteredHotels =selectedLocation === "ALL" ? hotels : hotels.filter((hotel)=>{
+  const filteredHotels = selectedLocation === "ALL" ? hotels : hotels.filter((hotel)=>{
      return hotel.location.toLowerCase().includes(selectedLocation.toLowerCase());
-  }) 
-
+  }); 
 
   return (
     <section className="px-8 py-8 lg:py-16">

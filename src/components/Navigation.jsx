@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { Globe } from 'lucide-react'
+import { Link } from 'react-router'
 
 const Navigation = () => {
   return (
@@ -8,7 +9,10 @@ const Navigation = () => {
         <div className='flex items-center space-x-8'>
             <a href="/" className='text-2xl font-bold'>LuminaraAI</a>
             <div className='hidden md:flex space-x-6'>
-                <a href="/" className='transition-colors'>Home</a>
+                <Link to="/" className='transition-colors'>Home</Link>
+            </div>
+            <div className='hidden md:flex space-x-6'>
+                <Link to="/hotels" className='transition-colors'>Hotels</Link>
             </div>
         </div>
 
@@ -19,10 +23,10 @@ const Navigation = () => {
                 </Globe>
             </Button>
             <Button variant="ghost" asChild>
-                  <a href="/sign-in">Log In</a>
+                  <Link to="/sign-in">Log In</Link>
             </Button>
             <Button asChild>
-                  <a href="/sign-up">Sign Up</a>
+                  <Link to="/sign-up">Sign Up</Link>
             </Button>
 
         </div>
