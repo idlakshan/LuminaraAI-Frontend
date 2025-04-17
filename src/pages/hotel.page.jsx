@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 
  const HotelPage = ()=> {
   const { id } = useParams();
-  console.log(id);
+
   
   const { data: hotel, isLoading, isError, error } = useGetHotelByIdQuery(id)
 

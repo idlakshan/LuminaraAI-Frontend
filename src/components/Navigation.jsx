@@ -12,7 +12,7 @@ const Navigation = () => {
                 <Link to="/" className='transition-colors'>Home</Link>
             </div>
             <div className='hidden md:flex space-x-6'>
-                <Link to="/hotels" className='transition-colors'>Hotels</Link>
+            <Link to={`/hotels/create`} className="transition-colors"> Create Hotel</Link>
             </div>
         </div>
 
