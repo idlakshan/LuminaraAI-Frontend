@@ -19,9 +19,16 @@ const hotelApi=createApi({
                 url:`hotels/${id}`,
                 method:'GET'
             })
+        }),
+        createHotel:builder.mutation({
+            query:(hotelData)=>({
+               url:'hotels',
+               method:'POST',
+               body:hotelData
+            })
         })
     })
 })
 
-export const {useGetHotelsQuery,useGetHotelByIdQuery} = hotelApi
+export const {useGetHotelsQuery,useGetHotelByIdQuery,useCreateHotelMutation} = hotelApi
 export default hotelApi
