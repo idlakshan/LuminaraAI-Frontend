@@ -36,32 +36,39 @@ const CreateHotelForm = () => {
   const handleSubmit = async (values) => {
     setIsSubmitting(true);
     const toastId = toast.loading("Creating hotel...");
-
+  
     try {
-      const formData = new FormData();
-      formData.append('name', values.name);
-      formData.append('location', values.location);
-      formData.append('price', values.price.toString());
-      formData.append('description', values.description);
-      formData.append('image', values.image[0]);
-
-      await createHotel(formData).unwrap();
-
-      toast.success("Hotel created successfully", {
-        id: toastId
-      })
-      
+      const file = values.image[0];
+      const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
+        });
+  
+      const base64Image = await toBase64(file);
+  
+      const hotelData = {
+        name: values.name,
+        location: values.location,
+        price: values.price,
+        description: values.description,
+        image: base64Image, 
+      };
+  
+      await createHotel(hotelData).unwrap();
+  
+      toast.success("Hotel created successfully", { id: toastId });
       form.reset();
     } catch (error) {
-      console.log(error);
-      toast.error("Hotel creation failed", {
-        id: toastId,
-       });
-       
+      console.error(error);
+      toast.error("Hotel creation failed", { id: toastId });
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   const handleUpdate = async () => {
 
