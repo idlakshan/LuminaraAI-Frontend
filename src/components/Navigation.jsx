@@ -2,9 +2,12 @@ import React from 'react'
 import { Button } from './ui/button'
 import { Globe } from 'lucide-react'
 import { Link } from 'react-router'
-import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/clerk-react'
 
 const Navigation = () => {
+
+    const {user} =useUser();
+
     return (
         <nav className='z-10 bg-black flex items-center justify-between px-8 text-white py-4'>
             <div className='flex items-center space-x-8'>
@@ -13,7 +16,10 @@ const Navigation = () => {
                     <Link to="/" className='transition-colors'>Home</Link>
                 </div>
                 <div className='hidden md:flex space-x-6'>
-                    <Link to={`/hotels/create`} className="transition-colors"> Create Hotel</Link>
+                 {
+                    user?.publicMetadata?.role === "admin" && (
+                        <Link to={`/hotels/create`} className="transition-colors"> Create Hotel</Link>)
+                 }
                 </div>
             </div>
 

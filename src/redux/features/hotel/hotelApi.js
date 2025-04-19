@@ -5,6 +5,12 @@ const hotelApi=createApi({
     reducerPath:'hotelApi',
     baseQuery:fetchBaseQuery({
         baseUrl:`${baseURL()}/api/`,
+        prepareHeaders:async(headers,{getState})=>{
+            const token=await window?.Clerk?.session?.getToken();
+            if(token){
+                headers.set('Authorization', `Bearer ${token}`)
+            }
+        }
 
     }),
     endpoints:(builder)=>({
